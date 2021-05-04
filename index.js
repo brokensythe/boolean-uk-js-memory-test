@@ -37,64 +37,35 @@ function randomNumber (upperMostLimit) {
 
 alert("Let's play a game 😁")
 
-alert("I will show you 4 numbers")
+const gameLength = prompt("How many numbers do you think you can remember over 15 seconds?")
+  
+alert(`Okay then ${gameLength} numbers it is 💪`)
 
-alert("Try to remember them.")
+const correctNumbersArray = []
 
-const number1 = randomNumber(100) 
+for (let i = 0; i < gameLength; i++) {
+  correctNumbersArray.push(usersNumber = randomNumber(100))
+  alert(`Here comes number ${i + 1}`)
+  alert(`${usersNumber}`)
+}
 
-alert("Here comes the first number")
-
-alert(`${number1}`)
-
-const number2 = randomNumber(100) 
-
-alert("Here comes the second number")
-
-alert(`${number2}`)
-
-const number3 = randomNumber(100) 
-
-alert("Here comes the third number")
-
-alert(`${number3}`)
-
-const number4 = randomNumber(100) 
-
-alert("Here comes the fourth number")
-
-alert(`${number4}`)
-
-let userInputs = null
+const userGuessArray = []
 
 function userReply () {
-    const userReply1 = Number(prompt("What was the first number?"))
-    const userReply2 = Number(prompt("What was the second number?"))
-    const userReply3 = Number(prompt("What was the third number?"))
-    const userReply4 = Number(prompt("What was the fourth number?"))
+  for (let i = 0; i < gameLength; i++) {
+    userGuessArray.push(usersNumber = Number(prompt(`What was number ${i + 1}`)))
+  }
 
-    return userInputs = {
-        userReply1: userReply1,
-        userReply2: userReply2,
-        userReply3: userReply3,
-        userReply4: userReply4,
+  let totalMatches = 0
+
+  for (let i = 0; i < gameLength; i++) {
+    if (correctNumbersArray[i] === userGuessArray[i]) {
+      totalMatches++
     }
+  }
+
+  alert(`You managed to match ${totalMatches} numbers.  Good Job 👍`)
 }
 
 setTimeout(userReply, 15000)
 
-function marking () {
-    if (userInputs.userReply1===number1 && userInputs.userReply2===number2 && userInputs.userReply3===number3 && userInputs.userReply4===number4) {
-        alert("You scored 4 out of four!!!")
-    } else if ((userInputs.userReply1===number1 && userInputs.userReply2===number2 && userInputs.userReply3===number3) || (userInputs.userReply2===number2 && userInputs.userReply3===number3 && userInputs.userReply4===number4) || (userInputs.userReply1===number1 && userInputs.userReply2===number2 && userInputs.userReply4===number4) || (userInputs.userReply1===number1 && userInputs.userReply3===number3 && userInputs.userReply4===number4)) {
-        alert("You scored 3 out of four 😁")
-    } else if ((userInputs.userReply1===number1 && userInputs.userReply2===number2) || (userInputs.userReply1===number1 && userInputs.userReply3===number3) || (userInputs.userReply1===number1 && userInputs.userReply4===number4) || (userInputs.userReply2===number2 && userInputs.userReply3===number3) || (userInputs.userReply2===number2 && userInputs.userReply4===number4) || (userInputs.userReply3===number3 && userInputs.userReply4===number4)) {
-        alert("You scored 2 out of four 😁")
-    } else if (userInputs.userReply1===number1 || userInputs.userReply2===number2 || userInputs.userReply3===number3 || userInputs.userReply4===number4) {
-        alert("You scored 1 out of four 😁")
-    } else {
-        alert("You scored zero 😕")
-    }
-}
-
-setTimeout(marking, 16000)
